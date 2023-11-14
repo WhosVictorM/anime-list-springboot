@@ -15,6 +15,9 @@ public class Anime {
     private String nome;
     private String descricao;
 
+    public Anime() {
+    }
+
     public Anime(Long id, String nome, String descricao) {
         Id = id;
         this.nome = nome;

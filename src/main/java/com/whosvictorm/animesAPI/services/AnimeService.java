@@ -20,7 +20,7 @@ public class AnimeService {
     }
 
     public List<Anime> findAll(){
-        Sort sort = Sort.by("nome").descending();
+        Sort sort = Sort.by("id").ascending();
         return animeRepository.findAll(sort);
     }
 
@@ -28,14 +28,17 @@ public class AnimeService {
         return animeRepository.findById(id).orElse(null);
     }
 
-    public List<Anime> update(Anime anime){
-        animeRepository.save(anime);
-        return findAll();
+    public Anime update(Long id, Anime anime){
+        Anime existeAnime = animeRepository.findById(id).orElse(null);
+        if(existeAnime != null){
+            existeAnime.setNome(anime.getNome());
+            existeAnime.setDescricao(anime.getDescricao());
+        }
+        return animeRepository.save(anime);
     }
 
-    public List<Anime> deleteById(Long id){
+    public void deleteById(Long id){
         animeRepository.deleteById(id);
-        return findAll();
     }
 
 }

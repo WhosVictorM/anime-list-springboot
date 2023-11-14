@@ -30,14 +30,14 @@ public class AnimeController {
         return animeService.findById(id);
     }
 
-    @PutMapping
-    public List<Anime> update(@RequestBody Anime anime){
-        return animeService.update(anime);
+    @PutMapping("/id")
+    public Anime update(@PathVariable Long id, @RequestBody Anime anime){
+        return animeService.update(id, anime);
     }
 
-    @DeleteMapping("{id}")
-    public List<Anime> deleteById(@PathVariable Long id){
-        return animeService.deleteById(id);
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id){
+        animeService.deleteById(id);
     }
 
 
