@@ -28,13 +28,15 @@ public class AnimeService {
         return animeRepository.findById(id).orElse(null);
     }
 
-    public Anime update(Long id, Anime anime){
-        Anime existeAnime = animeRepository.findById(id).orElse(null);
-        if(existeAnime != null){
-            existeAnime.setNome(anime.getNome());
-            existeAnime.setDescricao(anime.getDescricao());
-        }
-        return animeRepository.save(anime);
+    public Anime update(Anime anime){
+        Anime newAnime = findById(anime.getId());
+        updateData(newAnime, anime);
+        return animeRepository.save(newAnime);
+    }
+
+    public void updateData(Anime newAnime, Anime oldAnime){
+        newAnime.setNome(oldAnime.getNome());
+        newAnime.setDescricao(oldAnime.getDescricao());
     }
 
     public void deleteById(Long id){

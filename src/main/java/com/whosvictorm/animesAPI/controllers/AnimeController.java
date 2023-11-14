@@ -30,9 +30,9 @@ public class AnimeController {
         return animeService.findById(id);
     }
 
-    @PutMapping("/id")
-    public Anime update(@PathVariable Long id, @RequestBody Anime anime){
-        return animeService.update(id, anime);
+    @PutMapping("/{id}")
+    public void update(@RequestBody Anime anime){
+        animeService.update(anime);
     }
 
     @DeleteMapping("/{id}")
